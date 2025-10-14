@@ -15,7 +15,7 @@ use App\Http\Controllers\CrewController;
 
 // Page d’accueil
 Route::get('/', function () {
-    return view('tasks.home');
+    return "coucous";
 })->name('home');
 
 // Page destinations (paramètre optionnel)

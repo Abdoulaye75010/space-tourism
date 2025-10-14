@@ -6,10 +6,10 @@
         'mobile'  => 'images/destination/background-destination-mobile.jpg',
     ]">
 
-    <!-- DESTINATIONS - MOBILE FIRST -->
+    <!-- Destinations - Mobile -->
     <section class="flex flex-col items-center text-center px-6 pt-8 pb-14 space-y-5 overflow-hidden">
 
-        <!-- 01 CHOISISSEZ... (1 ligne, condensé) -->
+        <!-- Titre de la page (Barlow condensé sur 1 ligne) -->
         <h2 class="font-barlow-condensed text-white text-[16px] tracking-[2.7px] uppercase mt-1 whitespace-nowrap">
             <span class="opacity-25 font-bold mr-2">01</span>
             Choisissez votre destination
@@ -22,7 +22,7 @@
           class="w-[170px] h-[170px] object-contain mt-1"
         />
 
-        <!-- Onglets planètes (condensé) -->
+        <!-- Onglets planètes (Barlow condensé) -->
         <nav class="mt-2 mb-1 flex items-center justify-center gap-6 font-barlow-condensed uppercase tracking-[2.7px] text-[14px] text-[#D0D6F9]">
             @foreach ($planets as $key => $p)
                 @php $active = $planet['title'] === $p['title']; @endphp
@@ -43,7 +43,7 @@
             {{ $planet['description'] }}
         </p>
 
-        <!-- Séparateur -->
+        <!-- Trait séparateur -->
         <hr class="w-full max-w-[327px] border-[#383B4B] my-6">
 
         <!-- Distance / Durée -->

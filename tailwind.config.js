@@ -15,8 +15,8 @@ export default {
       fontFamily: {
         bellefair: ['Bellefair', 'serif'],
         barlow: ['Barlow', 'sans-serif'],
-        barlowCondensed: ['Barlow Condensed', 'sans-serif'],  // camelCase
-        'barlow-condensed': ['Barlow Condensed', 'sans-serif'], // alias kebab-case
+        barlowCondensed: ['Barlow Condensed', 'sans-serif'],  
+        'barlow-condensed': ['Barlow Condensed', 'sans-serif'],
       },
     },
   },

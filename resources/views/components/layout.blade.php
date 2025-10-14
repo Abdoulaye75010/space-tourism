@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title ?? 'Space Tourism' }}</title>
 
-    <!-- Polices globales -->
-    <!-- Polices globales -->
+    {{-- Polices globales --}}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bellefair&family=Barlow&family=Barlow+Condensed&display=swap" rel="stylesheet">
@@ -85,7 +84,7 @@
         </div>
     </footer>
 
-    {{-- Script pour burger menu et background responsive --}}
+    {{-- Script pour le burger, le menu et le background responsive --}}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const btn = document.getElementById('mobile-menu-button');
