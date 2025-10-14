@@ -1,0 +1,45 @@
+<?php
+
+/*use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TaskController;
+
+Route::resource('tasks', TaskController::class);
+Route::get('/', function () {
+    return view('welcome');
+});
+*/
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DestinationController;
+use App\Http\Controllers\CrewController;
+
+// Page d’accueil
+Route::get('/', function () {
+    return view('tasks.home');
+})->name('home');
+
+// Page destinations (paramètre optionnel)
+
+Route::get('/destinations/{planet?}', [DestinationController::class, 'show'])
+     ->name('destinations');
+
+// Page équipage
+Route::get('/crew', function () {
+    return view('tasks.crew');
+})->name('crew');
+
+// Page technologies
+Route::get('/technology', function () {
+    return view('tasks.technology');
+})->name('technology');
+
+// Page principale de l’équipage (facultatif)
+Route::get('/crew', [CrewController::class, 'index'])->name('crew');
+
+// Pages individuelles des membres
+Route::get('/crew/douglas-hurley', [CrewController::class, 'douglasHurley'])->name('crew.douglas-hurley');
+Route::get('/crew/mark-shuttleworth', [CrewController::class, 'markShuttleworth'])->name('crew.mark-shuttleworth');
+Route::get('/crew/victor-glover', [CrewController::class, 'victorGlover'])->name('crew.victor-glover');
+Route::get('/crew/anousheh-ansari', [CrewController::class, 'anoushehAnsari'])->name('crew.anousheh-ansari');
+
+
