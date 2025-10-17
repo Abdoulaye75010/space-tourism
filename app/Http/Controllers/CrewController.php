@@ -6,28 +6,30 @@ use Illuminate\Http\Request;
 
 class CrewController extends Controller
 {
+    // Page principale du crew
     public function index()
     {
-        return view('tasks.crew.douglas-hurley');
+        return view('crew.index');
     }
 
-    public function douglas()
+    // Membres individuels
+    public function douglasHurley()
     {
-        return view('tasks.crew.douglas-hurley');
+        return view('crew.douglas-hurley');
     }
 
-    public function mark()
+    public function markShuttleworth()
     {
-        return view('tasks.crew.mark-shuttleworth');
+        return view('crew.mark-shuttleworth');
     }
 
-    public function victor()
+    public function victorGlover()
     {
-        return view('tasks.crew.victor-glover');
+        return view('crew.victor-glover');
     }
 
-    public function anousheh()
+    public function anoushehAnsari()
     {
-        return view('tasks.crew.anousheh-ansari');
+        return view('crew.anousheh-ansari');
     }
 }

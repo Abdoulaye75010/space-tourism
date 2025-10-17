@@ -19,22 +19,22 @@ class DestinationController extends Controller
             'mars' => [
                 'title' => 'Mars',
                 'image' => 'image-mars.png',
-                'description' => 'Mars, la planète rouge, mystérieuse et fascinante.',
-                'distance' => '225 millions km',
+                'description' => "N'oubliez pas vos bottes de randonnée. Vous en aurez besoin pour gravir le mont Olympus, la plus haute montagne planétaire dans notre système solaire. Il fait deux fois et demie la taille de l'Everest! ",
+                'distance' => '225 gm',
                 'duration' => '9 mois',
             ],
             'europe' => [
                 'title' => 'Europe',
                 'image' => 'image-europa.png',
-                'description' => 'Europe, lune glacée de Jupiter, abritant peut-être un océan sous sa surface.',
-                'distance' => '628 millions km',
+                'description' => "La plus petite des quatre lunes galiléennes en orbite autour de Jupiter, Europe est le rêve des amoureux de  l'hiver. Sa surface glacée est parfaite pour faire un peu de patin à glace, du curling, du hockey ou tout simplement pour vous détentre dans votre confortable chalet hivernal.",
+                'distance' => '628 gm',
                 'duration' => '6 ans',
             ],
             'titan' => [
                 'title' => 'Titan',
                 'image' => 'image-titan.png',
-                'description' => 'Titan, lune de Saturne, avec une atmosphère épaisse et mystérieuse.',
-                'distance' => '1,6 milliards km',
+                'description' => "La seule lune connue pour avoir une atmosphère dense autre que la Terre, Titan est comme une maison loin de la laison (et juste quelques centaines de degrés plus froid !). En bonus, vous pouvez contemplez des vues saisissantes des anneaux de Saturne.",
+                'distance' => '1,6 tm',
                 'duration' => '7 ans',
             ],
         ];
@@ -47,7 +47,7 @@ class DestinationController extends Controller
 
         abort_unless(isset($planets[$planet]), 404);
 
-        return view('tasks.destinations', [
+        return view('destinations.index', [
             'planet' => $planets[$planet],
             'planets' => $planets,
             'backgrounds' => $backgrounds

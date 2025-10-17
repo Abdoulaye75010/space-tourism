@@ -10,14 +10,16 @@
     <section class="flex flex-col items-center text-center w-full max-w-[375px] mx-auto px-6 mt-0">
 
         <!-- Titre secondaire -->
-        <h2 class="text-[16px] leading-[19px] tracking-[2.7px] font-barlow-condensed font-bold text-white uppercase mb-4">
-            02 RENCONTREZ L'ÉQUIPAGE
-        </h2>
+        <h2 class="text-[16px] leading-[19px] tracking-[2.7px] font-barlow-condensed font-bold text-white uppercase mb-4 w-[222px] h-[19px] whitespace-nowrap">
+  <span class="opacity-25 font-bold mr-2">02</span> RENCONTREZ L'ÉQUIPAGE
+</h2>
 
         <!-- Image du membre -->
-        <img src="{{ asset('images/crew/image-douglas-hurley.png') }}" 
-             alt="Commandant Douglas" 
-             class="crew-image w-[327px] h-[223px] mb-4 rounded-lg shadow-lg object-cover">
+        <img 
+  src="{{ asset('images/crew/image-douglas-hurley.png') }}" 
+  alt="Commandant Douglas Hurley"
+  class="w-[327px] h-[223,1px] mb-4 rounded-lg shadow-lg object-contain"
+/>
 
         <!-- Points de navigation -->
         <div class="crew-nav flex justify-center space-x-2 mb-4">
