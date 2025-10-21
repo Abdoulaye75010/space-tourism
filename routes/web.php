@@ -12,11 +12,13 @@ Route::get('/', function () {
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\CrewController;
+use App\Http\Controllers\TechnologyController;
 
 // Page d’accueil
 Route::get('/', function () {
-    return "coucous";
+    return view('welcome');
 })->name('home');
+
 
 // Page destinations (paramètre optionnel)
 
@@ -29,9 +31,7 @@ Route::get('/crew', function () {
 })->name('crew');
 
 // Page technologies
-Route::get('/technology', function () {
-    return view('tasks.technology');
-})->name('technology');
+Route::get('/technology', [TechnologyController::class, 'index'])->name('technology');
 
 // Page principale de l’équipage (facultatif)
 Route::get('/crew', [CrewController::class, 'index'])->name('crew');
