@@ -1,55 +1,25 @@
-<!--
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Technologies - Space Tourism</title>
-</head>
-<body>
-    <h1>Explorez nos technologies</h1>
-    <nav>
-        <a href="{{ route('home') }}">Accueil</a> |
-        <a href="{{ route('destinations') }}">Destinations</a> |
-        <a href="{{ route('crew') }}">Équipage</a> |
-        <a href="{{ route('technology') }}">Technologies</a>
-    </nav>
-</body>
-</html>
---> 
+<x-layout 
+    :title="'Technologies | Space Tourism'"
+    :background="[
+        'desktop' => 'images/technology/background-technology-desktop.jpg',
+        'tablet' => 'images/technology/background-technology-tablet.jpg',
+        'mobile' => 'images/technology/background-technology-mobile.jpg',
+    ]">
 
-<x-layout :title="'TECHNOLOGIES | Space Tourism'"
-          :description="'Découvrez nos technologies pour vos voyages spatiaux.'"
-          :background="'images/technology/background-technology-desktop.jpg'">
+    <section class="text-center text-white py-10">
+        <h1 class="text-3xl font-bellefair mb-8">Space Technologies</h1>
 
-    {{-- Section principale avec les technologies --}}
-    <section class="mt-8">
-        {{-- Titre de la section --}}
-        <h2 class="text-3xl font-bold mb-6 text-center">Les technologies qui rendent ce voyage possible</h2>
-
-        {{-- Grille des technologies --}}
         <div class="grid md:grid-cols-3 gap-6">
-            {{-- Technologie 1 --}}
-            <div class="bg-black text-white rounded-lg shadow p-4 text-center">
-                <h3 class="text-xl font-semibold mb-2">Propulsion avancée</h3>
-                <p>Permet de voyager plus vite et plus loin dans l’espace.</p>
-            </div>
-
-            {{-- Technologie 2 --}}
-            <div class="bg-black text-white rounded-lg shadow p-4 text-center">
-                <h3 class="text-xl font-semibold mb-2">Systèmes de survie</h3>
-                <p>Assure la sécurité et le confort de l’équipage durant la mission.</p>
-            </div>
-
-            {{-- Technologie 3 --}}
-            <div class="bg-black text-white rounded-lg shadow p-4 text-center">
-                <h3 class="text-xl font-semibold mb-2">Habitat spatial</h3>
-                <p>Fournit un environnement stable et sécurisé pour vivre dans l’espace.</p>
-            </div>
+            @foreach ($technologies as $tech)
+                <div class="bg-gray-900 p-6 rounded-xl shadow">
+                    <img src="{{ asset('images/technology/' . $tech->image_portrait) }}" 
+                         alt="{{ $tech->name }}" 
+                         class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h2 class="text-xl font-bellefair mb-2">{{ $tech->name }}</h2>
+                    <p class="text-gray-400 text-sm">{{ $tech->description }}</p>
+                </div>
+            @endforeach
         </div>
-        {{-- Fin de la grille --}}
     </section>
+
 </x-layout>
-
-
-
-

@@ -12,7 +12,7 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    {{-- ✅ Styles globaux pour les backgrounds --}}
+    {{-- Styles globaux pour les backgrounds --}}
     <style>
         body {
             background-size: cover;
@@ -54,7 +54,7 @@
                 <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'border-b-2 border-white pb-1' : 'hover:border-b-2 hover:border-gray-400 pb-1' }}">Accueil</a>
                 <a href="{{ route('destinations') }}" class="{{ request()->routeIs('destinations') ? 'border-b-2 border-white pb-1' : 'hover:border-b-2 hover:border-gray-400 pb-1' }}">Destinations</a>
                 <a href="{{ route('crew') }}" class="{{ request()->routeIs('crew') ? 'border-b-2 border-white pb-1' : 'hover:border-b-2 hover:border-gray-400 pb-1' }}">Équipage</a>
-                <a href="{{ route('technology') }}" class="{{ request()->routeIs('technology') ? 'border-b-2 border-white pb-1' : 'hover:border-b-2 hover:border-gray-400 pb-1' }}">Technologies</a>
+                <a href="{{ route('technology.index') }}" class="{{ request()->routeIs('technology.index') ? 'border-b-2 border-white pb-1' : 'hover:border-b-2 hover:border-gray-400 pb-1' }}">Technologies</a>
             </nav>
 
             {{-- Burger menu mobile --}}
@@ -66,9 +66,12 @@
         {{-- Menu mobile --}}
         <nav id="mobile-menu" class="hidden flex-col space-y-2 uppercase tracking-widest p-4 bg-black md:hidden">
             <a href="{{ route('home') }}" class="hover:text-gray-300">Accueil</a>
-            <a href="{{ route('destinations') }}" class="hover:text-gray-300">Destinations</a>
+            <a href="{{ route('destinations.index') }}" 
+   class="{{ request()->routeIs('destinations.*') ? 'border-b-2 border-white pb-1' : 'hover:border-b-2 hover:border-gray-400 pb-1' }}">
+   Destinations
+</a>
             <a href="{{ route('crew') }}" class="hover:text-gray-300">Équipage</a>
-            <a href="{{ route('technology') }}" class="hover:text-gray-300">Technologies</a>
+            <a href="{{ route('technology.index') }}" class="hover:text-gray-300">Technologies</a>
         </nav>
     </header>
 
