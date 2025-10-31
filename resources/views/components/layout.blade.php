@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,36 +44,49 @@
 
     {{-- Header --}}
     <header class="bg-black shadow relative z-50">
-        <div class="container mx-auto flex items-center justify-between p-4 max-w-6xl">
-            <a href="{{ route('home') }}">
-                <img src="{{ asset('images/shared/logo.svg') }}" alt="Logo Space Tourism" class="w-10 h-10 md:w-12 md:h-12">
+    <div class="container mx-auto flex items-center justify-between p-4 max-w-6xl">
+        {{-- Logo --}}
+        <a href="{{ route('home') }}">
+            <img src="{{ asset('images/shared/logo.svg') }}" alt="Logo Space Tourism" class="w-10 h-10 md:w-12 md:h-12">
+        </a>
+
+        {{-- Menu principal desktop --}}
+        <nav class="hidden md:flex space-x-6 uppercase tracking-widest">
+            <a href="{{ route('home') }}"
+               class="{{ request()->routeIs('home') ? 'border-b-2 border-white pb-1' : 'hover:border-b-2 hover:border-gray-400 pb-1' }}">
+               {{ __('messages.menu.home')}}
             </a>
 
-            {{-- Menu desktop --}}
-            <nav class="hidden md:flex space-x-6 uppercase tracking-widest">
-                <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'border-b-2 border-white pb-1' : 'hover:border-b-2 hover:border-gray-400 pb-1' }}">Accueil</a>
-                <a href="{{ route('destinations') }}" class="{{ request()->routeIs('destinations') ? 'border-b-2 border-white pb-1' : 'hover:border-b-2 hover:border-gray-400 pb-1' }}">Destinations</a>
-                <a href="{{ route('crew') }}" class="{{ request()->routeIs('crew') ? 'border-b-2 border-white pb-1' : 'hover:border-b-2 hover:border-gray-400 pb-1' }}">Équipage</a>
-                <a href="{{ route('technology.index') }}" class="{{ request()->routeIs('technology.index') ? 'border-b-2 border-white pb-1' : 'hover:border-b-2 hover:border-gray-400 pb-1' }}">Technologies</a>
-            </nav>
+            <a href="{{ route('destinations.index') }}"
+               class="{{ request()->routeIs('destinations.*') ? 'border-b-2 border-white pb-1' : 'hover:border-b-2 hover:border-gray-400 pb-1' }}">
+               {{ __('messages.menu.destinations')}}
+            </a>
 
-            {{-- Burger menu mobile --}}
-            <button id="mobile-menu-button" class="md:hidden p-2">
-                <img src="{{ asset('images/shared/icon-hamburger.svg') }}" alt="Ouvrir le menu" class="w-6 h-[21px]">
-            </button>
-        </div>
+            <a href="{{ route('crew.index') }}"
+               class="{{ request()->routeIs('crew.*') ? 'border-b-2 border-white pb-1' : 'hover:border-b-2 hover:border-gray-400 pb-1' }}">
+               {{ __('messages.menu.crew') }}
+            </a>
 
-        {{-- Menu mobile --}}
-        <nav id="mobile-menu" class="hidden flex-col space-y-2 uppercase tracking-widest p-4 bg-black md:hidden">
-            <a href="{{ route('home') }}" class="hover:text-gray-300">Accueil</a>
-            <a href="{{ route('destinations.index') }}" 
-   class="{{ request()->routeIs('destinations.*') ? 'border-b-2 border-white pb-1' : 'hover:border-b-2 hover:border-gray-400 pb-1' }}">
-   Destinations
-</a>
-            <a href="{{ route('crew') }}" class="hover:text-gray-300">Équipage</a>
-            <a href="{{ route('technology.index') }}" class="hover:text-gray-300">Technologies</a>
+            <a href="{{ route('technology.index') }}"
+               class="{{ request()->routeIs('technology.*') ? 'border-b-2 border-white pb-1' : 'hover:border-b-2 hover:border-gray-400 pb-1' }}">
+               {{ __('messages.menu.technology')}}
+            </a>
         </nav>
-    </header>
+
+        {{-- Burger menu mobile --}}
+        <button id="mobile-menu-button" class="md:hidden p-2">
+            <img src="{{ asset('images/shared/icon-hamburger.svg') }}" alt="Ouvrir le menu" class="w-6 h-[21px]">
+        </button>
+    </div>
+
+    {{-- Menu mobile --}}
+    <nav id="mobile-menu" class="hidden flex-col space-y-2 uppercase tracking-widest p-4 bg-black md:hidden">
+        <a href="{{ route('home') }}">{{ __('messages.menu.home')}}</a>
+        <a href="{{ route('destinations.index') }}">{{ __('messages.menu.destinations')}}</a>
+        <a href="{{ route('crew.index') }}">{{ __('messages.menu.crew')}}</a>
+        <a href="{{ route('technology.index') }}">{{ __('messages.menu.technology') }}</a>
+    </nav>
+</header>
 
     {{-- Contenu principal --}}
     <main class="container mx-auto p-4 max-w-6xl flex-grow">

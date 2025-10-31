@@ -7,12 +7,12 @@
     ]">
 
     <section class="text-center text-white py-10">
-        <h1 class="text-3xl font-bellefair mb-8">Space Technologies</h1>
+        <h1 class="text-3xl font-bellefair mb-8">{{ __('messages.titles.technology')}}</h1>
 
         <div class="grid md:grid-cols-3 gap-6">
             @foreach ($technologies as $tech)
                 <div class="bg-gray-900 p-6 rounded-xl shadow">
-                    <img src="{{ asset('images/technology/' . $tech->image_portrait) }}" 
+                    <img src="{{ asset('images/technology/' . $tech->image) }}" 
                          alt="{{ $tech->name }}" 
                          class="w-full h-48 object-cover rounded-lg mb-4">
                     <h2 class="text-xl font-bellefair mb-2">{{ $tech->name }}</h2>

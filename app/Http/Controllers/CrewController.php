@@ -2,34 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Crew;
 use Illuminate\Http\Request;
 
 class CrewController extends Controller
 {
-    // Page principale du crew
     public function index()
     {
-        return view('crew.index');
+        $crews = Crew::all();
+
+        // Si la table est vide, on retourne une vue spéciale
+        if ($crews->isEmpty()) {
+            return view('crew.index', ['crew' => null, 'crews' => []]);
+        }
+
+        $crew = $crews->first(); // Premier membre par défaut
+        return view('crew.index', compact('crew', 'crews'));
+
+        dd($crew, $crews);
     }
 
-    // Membres individuels
-    public function douglasHurley()
+    public function show($id)
     {
-        return view('crew.douglas-hurley');
-    }
-
-    public function markShuttleworth()
-    {
-        return view('crew.mark-shuttleworth');
-    }
-
-    public function victorGlover()
-    {
-        return view('crew.victor-glover');
-    }
-
-    public function anoushehAnsari()
-    {
-        return view('crew.anousheh-ansari');
+        $crews = Crew::all();
+        $crew = Crew::findOrFail($id);
+        return view('crew.index', compact('crew', 'crews'));
     }
 }

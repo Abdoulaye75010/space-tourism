@@ -11,32 +11,32 @@
 
         <!-- Titre de la page (Barlow condensé sur 1 ligne) -->
         <h2 class="font-barlow-condensed text-white text-[16px] leading-[19px] tracking-[2.7px] uppercase -mt-8 whitespace-nowrap w-[278px] h-[19]">
-<span class="opacity-25 font-bold mr-2 ">01</span>
-            Choisissez votre destination
+        <span class="opacity-25 font-bold mr-2 ">01</span>
+        {{ __('messages.titles.destinations')}}
         </h2>
 
         <!-- Image planète -->
         <img
           src="{{ asset('images/destination/' . $planet['image']) }}"
-          alt="{{ $planet['title'] }}"
+          alt="{{ $planet['name'] }}"
           class="w-[170px] h-[170px] object-contain mt-1"
         />
 
         <!-- Onglets planètes (Barlow condensé) -->
         <nav class="mt-2 mb-1 flex items-center justify-center gap-6 font-barlow-condensed uppercase text-[14px] leading-[17px] tracking-[2.36px] text-[#D0D6F9]">
             @foreach ($planets as $key => $p)
-                @php $active = $planet['title'] === $p['title']; @endphp
-                <a href="{{ route('destinations', ['planet' => $key]) }}"
+                @php $active = $planet['name'] === $p['name']; @endphp
+                <a href="{{ route('destinations.show', ['id' => $p['id']]) }}"
                    class="pb-4
                     {{ $active ? 'text-white border-b-2 border-white' : 'hover:text-white/80 border-b-2 border-transparent hover:border-white/40' }}">
-                    {{ $p['title'] }}
+                    {{ $p['name'] }}
                 </a>
             @endforeach
         </nav>
 
         <!-- Nom planète (Bellefair serif) -->
         <h1 class="font-bellefair text-white uppercase text-[56px] leading-[64px] max-w-[327px] mx-auto mt-4">
-            {{ $planet['title'] }}
+            {{ $planet['name'] }}
         </h1>
 
         <!-- Description (Barlow) -->
