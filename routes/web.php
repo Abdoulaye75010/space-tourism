@@ -26,6 +26,15 @@ Route::get('/technology', [TechnologyController::class, 'index'])->name('technol
 // Page principale de l’équipage (facultatif)
 Route::get('/crew', [CrewController::class, 'index'])->name('crew');
 
+foreach (['fr', 'en'] as $loc) {
+
+    // Groupe de routes avec préfixe {locale}
+    Route::prefix($loc)->group(function () {
+
+        // Accueil
+        Route::get('/', fn() => view('home'))->name('home');
+
+
         // Pages individuelles des membres
         Route::get('/crew/douglas-hurley', [CrewController::class, 'douglasHurley'])->name('crew.douglas-hurley');
         Route::get('/crew/mark-shuttleworth', [CrewController::class, 'markShuttleworth'])->name('crew.mark-shuttleworth');
