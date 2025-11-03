@@ -6,18 +6,25 @@ use App\Http\Controllers\CrewController;
 use App\Http\Controllers\TechnologyController;
 
 Route::get('/', function () {
-    // Redirige vers la version française par défaut
-    return redirect('/fr');
-});
+    return view('welcome');
+})->name('home');
 
-foreach (['fr', 'en'] as $loc) {
 
-    // Groupe de routes avec préfixe {locale}
-    Route::prefix($loc)->group(function () {
+// Page destinations (paramètre optionnel)
 
-        // Accueil
-        Route::get('/', fn() => view('home'))->name('home');
+Route::get('/destinations/{planet?}', [DestinationController::class, 'show'])
+     ->name('destinations');
 
+// Page équipage
+Route::get('/crew', function () {
+    return view('tasks.crew');
+})->name('crew');
+
+// Page technologies
+Route::get('/technology', [TechnologyController::class, 'index'])->name('technology');
+
+// Page principale de l’équipage (facultatif)
+Route::get('/crew', [CrewController::class, 'index'])->name('crew');
 
         // Pages individuelles des membres
         Route::get('/crew/douglas-hurley', [CrewController::class, 'douglasHurley'])->name('crew.douglas-hurley');
