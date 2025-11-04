@@ -13,10 +13,16 @@ return [
     //  Page titles
     'titles' => [
         'home' => 'So you want to travel to',
-        'destinations' => 'Pick your destination',
+        'space' => 'The space',
+        'destinations' => 'Choose your destination',
         'crew' => 'Meet the crew',
-        'technology' => 'Space technologies',
+        'technology' => 'Space Technologies',
     ],
+
+    'destinations' => [
+    'distance' => 'Distance',
+    'duration' => 'Duration',
+],
 
     //  Descriptive texts
     'texts' => [
@@ -31,5 +37,5 @@ return [
     ],
 
     //  Other
-    'footer' => 'All rights reserved.',
+    'footer' => 'Space Tourism — All rights reserved.',
 ];

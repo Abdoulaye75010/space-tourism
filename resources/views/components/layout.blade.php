@@ -96,8 +96,7 @@
     {{-- Footer --}}
     <footer class="bg-black shadow mt-6">
         <div class="container mx-auto text-center p-4 text-gray-400 max-w-6xl">
-            &copy; {{ date('Y') }} Space Tourism — Tous droits réservés.
-        </div>
+            &copy; {{ date('Y') }} {{ __('messages.footer') }}.
     </footer>
 
     {{-- Script pour le burger, le menu et le background responsive --}}

@@ -10,13 +10,18 @@ return [
         'language' => 'Langue',
     ],
 
-    //  Titres de pages
+   // Titres
     'titles' => [
         'home' => 'Donc vous voulez voyager dans',
         'destinations' => 'Choisissez votre destination',
         'crew' => "Rencontrez l'équipage",
         'technology' => 'Technologies spatiales',
     ],
+
+    'destinations' => [
+    'distance' => 'Distance',
+    'duration' => 'Durée',
+],
 
     //  Paragraphes descriptifs
     'texts' => [
@@ -31,5 +36,5 @@ return [
     ],
 
     //  Autres
-    'footer' => 'Tous droits réservés.',
+    'footer' => 'Space Tourism — Tous droits réservés.',
 ];

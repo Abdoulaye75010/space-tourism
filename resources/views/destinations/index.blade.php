@@ -50,11 +50,11 @@
         <!-- Distance / Durée -->
         <div class="flex flex-col items-center gap-6">
             <div>
-                <p class="font-barlow-condensed uppercase text-[14px] leading-[17px] tracking-[2.36px] text-[#D0D6F9] mb-2">Distance</p>
+                <p class="font-barlow-condensed uppercase text-[14px] leading-[17px] tracking-[2.36px] text-[#D0D6F9] mb-2">{{ __('messages.destinations.distance') }}</p>
                 <p class="font-bellefair text-white text-[28px] uppercase">{{ $planet['distance'] }}</p>
             </div>
             <div>
-                <p class="font-barlow-condensed uppercase text-[14px] leading-[17px] tracking-[2.36px] text-[#D0D6F9] mb-2">Durée</p>
+                <p class="font-barlow-condensed uppercase text-[14px] leading-[17px] tracking-[2.36px] text-[#D0D6F9] mb-2">{{ __('messages.destinations.duration') }}</p>
                 <p class="font-bellefair text-white text-[28px] uppercase">{{ $planet['duration'] }}</p>
             </div>
         </div>

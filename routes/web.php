@@ -6,7 +6,7 @@ use App\Http\Controllers\CrewController;
 use App\Http\Controllers\TechnologyController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 })->name('home');
 
 

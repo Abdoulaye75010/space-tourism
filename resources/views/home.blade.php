@@ -14,11 +14,11 @@
          <div class="w-[327px] h-[276px] flex flex-col items-center justify-center <div class= -translate-y-16">
         
   <h5 class="font-barlow-condensed text-[#D0D6F9] uppercase text-[16px] leading-[19px] tracking-[2.7px] mb-2">
-      {{ __('messages.titles.home')}}
+      {{ __('messages.titles.home') }}
   </h5>
 
   <h1 class="font-bellefair text-white uppercase text-[76px] leading-[90px] mb-4">
-    L’espace
+    {{ __('messages.titles.space') }}
 </h1>
 
   <p class="font-barlow text-[#D0D6F9] text-[15px] leading-[22px] text-center">
