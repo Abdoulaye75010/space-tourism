@@ -28,7 +28,7 @@
     {{-- Boutons de navigation --}}
     <div class="crew-nav flex justify-center space-x-2 mb-6">
         @foreach($crews as $c)
-            <a href="{{ route('crew.show', ['id' => $c->id]) }}"
+           <a href="{{ route(app()->getLocale() . '.crew.show', ['id' => $c->id]) }}"
                class="dot w-3 h-3 rounded-full {{ $crew->id === $c->id ? 'bg-white' : 'bg-gray-500' }}">
             </a>
         @endforeach

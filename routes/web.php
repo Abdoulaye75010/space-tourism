@@ -1,58 +1,48 @@
 <?php
-// commentaire de tests
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\CrewController;
 use App\Http\Controllers\TechnologyController;
+use App\Http\Controllers\LanguageController;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+/*
+Toutes les routes sont multilingues (/fr et /en).
+La langue par défaut est le français (/fr).
+*/
 
+// Redirige la racine du site vers /fr
+Route::get('/', fn() => redirect('/fr'));
 
-// Page destinations (paramètre optionnel)
+// Groupe de routes multilingues (fr / en)
+foreach (['fr', 'en'] as $locale) {
 
-Route::get('/destinations/{planet?}', [DestinationController::class, 'show'])
-     ->name('destinations');
-
-// Page équipage
-Route::get('/crew', function () {
-    return view('tasks.crew');
-})->name('crew');
-
-// Page technologies
-Route::get('/technology', [TechnologyController::class, 'index'])->name('technology');
-
-// Page principale de l’équipage (facultatif)
-Route::get('/crew', [CrewController::class, 'index'])->name('crew');
-
-foreach (['fr', 'en'] as $loc) {
-
-    // Groupe de routes avec préfixe {locale}
-    Route::prefix($loc)->group(function () {
+    Route::prefix($locale)->group(function () use ($locale) {
 
         // Accueil
-        Route::get('/', fn() => view('home'))->name('home');
-
-
-        // Pages individuelles des membres
-        Route::get('/crew/douglas-hurley', [CrewController::class, 'douglasHurley'])->name('crew.douglas-hurley');
-        Route::get('/crew/mark-shuttleworth', [CrewController::class, 'markShuttleworth'])->name('crew.mark-shuttleworth');
-        Route::get('/crew/victor-glover', [CrewController::class, 'victorGlover'])->name('crew.victor-glover');
-        Route::get('/crew/anousheh-ansari', [CrewController::class, 'anoushehAnsari'])->name('crew.anousheh-ansari');
-
-        // Crew
-        Route::get('/crew', [CrewController::class, 'index'])->name('crew.index');
-        Route::get('/crew/{id}', [CrewController::class, 'show'])->name('crew.show');
-
-        // Technonlogy
-        Route::get('/technology', [TechnologyController::class, 'index'])->name('technology.index');
-        Route::get('/technology/{id}', [TechnologyController::class, 'show'])->name('technology.show');
+        Route::get('/', [HomeController::class, 'index'])->name($locale . '.home');
 
         // Destinations
-        Route::get('/destinations', [DestinationController::class, 'index'])->name('destinations.index');
-        Route::get('destinations/{id}', [DestinationController::class, 'show'])->name('destinations.show');
+        Route::get('/destinations', [DestinationController::class, 'index'])->name($locale . '.destinations.index');
+        Route::get('/destinations/{id}', [DestinationController::class, 'show'])->name($locale . '.destinations.show');
 
+        // Équipage
+        Route::get('/crew', [CrewController::class, 'index'])->name($locale . '.crew.index');
+        Route::get('/crew/{id}', [CrewController::class, 'show'])->name($locale . '.crew.show');
+
+        // Technologies
+        Route::get('/technology', [TechnologyController::class, 'index'])->name($locale . '.technology.index');
+        Route::get('/technology/{id}', [TechnologyController::class, 'show'])->name($locale . '.technology.show');
     });
-
 }
+
+// Changement de langue (FR / EN)
+
+Route::get('/lang/{locale}', [LanguageController::class, 'switch'])
+    ->name('lang.switch');
+
+// Cette route déclenche la méthode switch() de LanguageController
+// Exemple d’URL : /lang/fr ou /lang/en
+// Elle redirige ensuite l’utilisateur vers la même page dans la langue choisie
+

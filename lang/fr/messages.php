@@ -13,6 +13,7 @@ return [
    // Titres
     'titles' => [
         'home' => 'Donc vous voulez voyager dans',
+        'space' => "L'espace",
         'destinations' => 'Choisissez votre destination',
         'crew' => "Rencontrez l'équipage",
         'technology' => 'Technologies spatiales',

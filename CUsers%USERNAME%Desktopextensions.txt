@@ -1,0 +1,2 @@
+ms-ceintl.vscode-language-pack-fr
+ms-vscode.live-server

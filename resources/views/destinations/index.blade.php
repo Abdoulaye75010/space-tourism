@@ -23,16 +23,23 @@
         />
 
         <!-- Onglets planètes (Barlow condensé) -->
+        {{-- 
+        Liens des planètes, version multilingue
+        Ancien code : route('destinations.show', ['id' => $p['id']])
+        Nouveau code : route(app()->getLocale() . '.destinations.show', ['id' => $p['id']])
+        Ce code génère la bonne route selon la langue active (fr/en)
+        --}}
         <nav class="mt-2 mb-1 flex items-center justify-center gap-6 font-barlow-condensed uppercase text-[14px] leading-[17px] tracking-[2.36px] text-[#D0D6F9]">
-            @foreach ($planets as $key => $p)
-                @php $active = $planet['name'] === $p['name']; @endphp
-                <a href="{{ route('destinations.show', ['id' => $p['id']]) }}"
-                   class="pb-4
-                    {{ $active ? 'text-white border-b-2 border-white' : 'hover:text-white/80 border-b-2 border-transparent hover:border-white/40' }}">
-                    {{ $p['name'] }}
-                </a>
-            @endforeach
-        </nav>
+        @foreach ($planets as $key => $p)
+        @php $active = $planet['name'] === $p['name']; @endphp
+        <a href="{{ route(app()->getLocale() . '.destinations.show', ['id' => $p['id']]) }}"
+           class="pb-4
+            {{ $active ? 'text-white border-b-2 border-white' : 'hover:text-white/80 border-b-2 border-transparent hover:border-white/40' }}">
+            {{ $p['name'] }}
+        </a>
+        @endforeach
+    
+    </nav>
 
         <!-- Nom planète (Bellefair serif) -->
         <h1 class="font-bellefair text-white uppercase text-[56px] leading-[64px] max-w-[327px] mx-auto mt-4">

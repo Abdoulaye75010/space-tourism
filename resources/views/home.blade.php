@@ -28,7 +28,15 @@
 
         <!-- Bouton Explorer -->
         <div class="relative flex items-center justify-center group">
-            <a href="{{ route('destinations.index', ['locale' => app()->getLocale()]) }}" 
+
+        {{-- 
+    Bouton 'Explorer', version multilingue
+    Ancien code : route('destinations.index', ['locale' => app()->getLocale()])
+    Nouveau code : route(app()->getLocale() . '.destinations.index')
+    Ce code utilise le nom de route complet (fr.destinations.index ou en.destinations.index)
+    --}}
+
+<a href="{{ route(app()->getLocale() . '.destinations.index') }}" 
    class="flex items-center justify-center w-[150px] h-[150px] rounded-full bg-white text-[#0B0D17] font-bellefair text-[20px] uppercase">
    {{ __('messages.buttons.explore') }}
 </a>
