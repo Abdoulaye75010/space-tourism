@@ -10,21 +10,32 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('technologies', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->text('description');
-            $table->string('image')->nullable();
-            $table->timestamps();
-        });
-    }
+{
+    Schema::create('technologies', function (Blueprint $table) {
+    $table->id();
+
+    $table->string('name')->nullable();
+    $table->string('name_fr')->nullable();
+    $table->string('name_en')->nullable();
+
+    $table->text('description')->nullable();
+    $table->text('description_fr')->nullable();
+    $table->text('description_en')->nullable();
+
+    $table->string('image_portrait')->nullable();
+    $table->string('image_landscape')->nullable();
+
+    $table->timestamps();
+});
+
+}
+
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('technology');
+        Schema::dropIfExists('technologies');
     }
 };

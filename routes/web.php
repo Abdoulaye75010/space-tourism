@@ -1,48 +1,77 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\DestinationController;
-use App\Http\Controllers\CrewController;
-use App\Http\Controllers\TechnologyController;
-use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\PlanetController;
+use App\Http\Controllers\Admin\CrewController;
+use App\Http\Controllers\Admin\TechnologyController;
 
-/*
-Toutes les routes sont multilingues (/fr et /en).
-La langue par défaut est le français (/fr).
-*/
+// ---------------------------------------------
+// Création Admin (temporaire)
+// ---------------------------------------------
+Route::get('/create-admin', function () {
+    $user = App\Models\User::firstOrCreate(
+        ['email' => 'admin@example.com'],
+        [
+            'name' => 'Admin',
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
+        ]
+    );
+    $user->assignRole('Administrateur');
+    return 'Administrateur créé avec succès !';
+});
 
-// Redirige la racine du site vers /fr
-Route::get('/', fn() => redirect('/fr'));
+// ---------------------------------------------
+// Pages publiques
+// ---------------------------------------------
+Route::get('/', function () {
+    return view('welcome');
+});
 
-// Groupe de routes multilingues (fr / en)
-foreach (['fr', 'en'] as $locale) {
+// Dashboard utilisateur Breeze
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})
+->middleware(['auth', 'verified'])
+->name('dashboard');
 
-    Route::prefix($locale)->group(function () use ($locale) {
+// ---------------------------------------------
+// Routes Breeze
+// ---------------------------------------------
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-        // Accueil
-        Route::get('/', [HomeController::class, 'index'])->name($locale . '.home');
+require __DIR__.'/auth.php';
 
-        // Destinations
-        Route::get('/destinations', [DestinationController::class, 'index'])->name($locale . '.destinations.index');
-        Route::get('/destinations/{id}', [DestinationController::class, 'show'])->name($locale . '.destinations.show');
+// =================================================================
+//  ADMIN — sécurisé par rôle Administrateur
+// =================================================================
+Route::middleware(['auth', 'role:Administrateur'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
 
-        // Équipage
-        Route::get('/crew', [CrewController::class, 'index'])->name($locale . '.crew.index');
-        Route::get('/crew/{id}', [CrewController::class, 'show'])->name($locale . '.crew.show');
+        // Dashboard
+        Route::get('/dashboard', function () {
+            return view('admin.dashboard.index');
+        })->name('dashboard');
 
-        // Technologies
-        Route::get('/technology', [TechnologyController::class, 'index'])->name($locale . '.technology.index');
-        Route::get('/technology/{id}', [TechnologyController::class, 'show'])->name($locale . '.technology.show');
+        // =======================
+        // CRUD Planètes
+        // =======================
+        Route::resource('planets', PlanetController::class)->except(['show']);
+
+        // =======================
+        // CRUD Crew
+        // =======================
+        Route::resource('crew', CrewController::class)->except(['show']);
+
+        // =======================
+        // CRUD Technologies
+        // =======================
+        Route::resource('technologies', TechnologyController::class)->except(['show']);
     });
-}
-
-// Changement de langue (FR / EN)
-
-Route::get('/lang/{locale}', [LanguageController::class, 'switch'])
-    ->name('lang.switch');
-
-// Cette route déclenche la méthode switch() de LanguageController
-// Exemple d’URL : /lang/fr ou /lang/en
-// Elle redirige ensuite l’utilisateur vers la même page dans la langue choisie
-

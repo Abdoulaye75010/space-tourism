@@ -1,59 +1,88 @@
-<x-layout :title="'ÉQUIPAGE | Space Tourism'"
-          :description="'Rencontrez notre équipage pour vos voyages spatiaux.'"
-          :background="[
-              'desktop' => 'images/crew/background-crew-desktop.jpg',
-              'tablet' => 'images/crew/background-crew-tablet.jpg',
-              'mobile' => 'images/crew/background-crew-mobile.jpg',
-          ]">
+<x-layout 
+    :title="'CREW | Space Tourism'" 
+    :background="[
+        'desktop' => 'images/crew/background-crew-desktop.jpg',
+        'tablet'  => 'images/crew/background-crew-tablet.jpg',
+        'mobile'  => 'images/crew/background-crew-mobile.jpg',
+    ]">
 
-    <section class="flex flex-col items-center text-center w-full max-w-[375px] mx-auto px-6 mt-0">
+    <section
+        class="px-6 md:px-8 lg:px-0
+               pt-8 md:pt-16 lg:pt-24
+               pb-14 text-white overflow-hidden lg:max-w-[1400px] lg:mx-auto">
 
-        <h2 class="text-[16px] leading-[19px] tracking-[2.7px] font-barlow-condensed font-bold text-white uppercase mb-4 w-[222px] h-[19px] whitespace-nowrap">
-            <span class="opacity-25 font-bold mr-2">02</span> {{__('messages.titles.crew')}}
+        {{-- 02 RENCONTREZ L’ÉQUIPE --}}
+        <h2 class="font-barlow-condensed uppercase tracking-[2.7px]
+                   text-[16px] md:text-[20px]
+                   text-center md:text-left
+                   mb-4 lg:mb-6 lg:ml-20 lg:-mt-8">
+            <span class="opacity-25 font-bold mr-2">02</span>
+            {{ __('messages.titles.crew') }}
         </h2>
 
-        @if($crew)
+        {{-- LAYOUT PRINCIPAL --}}
+        <div class="flex flex-col items-center text-center
+                    lg:flex-row lg:items-start lg:justify-between lg:gap-8">
 
-    {{-- Image + trait collé en dessous --}}
-<div class="relative w-[327px] h-[223px] mb-6">
-    <img 
-        src="{{ asset('images/crew/image-' . $crew->image) }}" 
-        alt="{{ $crew->first_name }} {{ $crew->last_name }}"
-        class="w-full h-full rounded-lg shadow-lg object-contain"
-    />
-    {{-- Trait collé au bas de l’image --}}
-    <div class="absolute bottom-0 left-0 w-full border-t border-gray-600 opacity-50"></div>
-</div>
+            {{-- COLONNE TEXTE --}}
+            <div class="flex flex-col items-center text-center
+                        max-w-[458px]
+                        lg:items-start lg:text-left lg:max-w-[700px]
+                        lg:ml-20 lg:mt-0">
 
-    {{-- Boutons de navigation --}}
-    <div class="crew-nav flex justify-center space-x-2 mb-6">
-        @foreach($crews as $c)
-           <a href="{{ route(app()->getLocale() . '.crew.show', ['id' => $c->id]) }}"
-               class="dot w-3 h-3 rounded-full {{ $crew->id === $c->id ? 'bg-white' : 'bg-gray-500' }}">
-            </a>
-        @endforeach
-    </div>
+                {{-- RÔLE --}}
+                <p class="font-barlow-condensed uppercase text-[#D0D6F9]
+                          tracking-[2.36px]
+                          text-[14px] md:text-[20px] lg:text-[24px]
+                          mt-8">
+                    {{ $crew->role }}
+                </p>
 
-    {{-- Rôle traduit --}}
-    <h4 class="text-[16px] leading-[18px] font-barlow text-white uppercase mb-1">
-      {{$crew->role}}
-    </h4>
+                {{-- NOM --}}
+                <h1 class="font-bellefair uppercase
+                           text-[24px] leading-[28px]
+                           md:text-[40px] md:leading-[46px]
+                           lg:text-[56px] lg:leading-[64px]
+                           mt-2">
+                    {{ $crew->name }}
+                </h1>
 
-    {{-- Nom complet --}}
-    <h3 class="text-[24px] leading-[28px] font-bellefair text-white uppercase mb-4">
-        {{ $crew->firstname }} {{ $crew->lastname }}
-    </h3>
+                {{-- BIO --}}
+                <p class="font-barlow text-[#D0D6F9]
+                          text-[15px] leading-[25px]
+                          md:text-[16px] md:leading-[28px]
+                          mt-4 mb-6">
+                    {{ $crew->biography }}
+                </p>
 
-    {{-- Description --}}
-    <p class="text-[15px] leading-[25px] font-barlow text-[#D0D6F9]">
-        {{ $crew->biography }}
-    </p>
+                {{-- DOTS --}}
+                <nav class="flex justify-center lg:justify-start gap-3 mt-8">
+                    @foreach($crews as $member)
+                        <a href="{{ route(app()->getLocale() . '.crew.show', ['id' => $member->id]) }}"
+                           class="w-3 h-3 rounded-full inline-block transition
+                                  {{ $crew->id === $member->id
+                                      ? 'bg-white'
+                                      : 'bg-gray-500 hover:bg-gray-300' }}">
+                        </a>
+                    @endforeach
+                </nav>
+            </div>
 
-@endif
+            {{-- COLONNE IMAGE --}}
+            <div class="lg:-mt-24 lg:self-start">
+                <img
+                    src="{{ asset('images/crew/' . $crew->image) }}" 
+                    alt="{{ $crew->name }}" 
+                    class="w-[200px] h-[200px]
+                           md:w-[456px] md:h-[456px]
+                           lg:w-[500px] lg:h-[500px]
+                           object-contain mx-auto"
+                />
 
+                <hr class="w-[327px] mx-auto border-[#383B4B] mt-6 md:hidden">
+            </div>
+
+        </div>
     </section>
 
-    @push('scripts')
-        <script src="{{ asset('js/crew.js') }}"></script>
-    @endpush
 </x-layout>

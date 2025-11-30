@@ -6,25 +6,34 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('planets', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description');
-            $table->string('distance');
-            $table->string('duration');
+
+            // Nom principal (pour l’admin)
+            $table->string('name')->nullable();
+
+            // Nom multilingue
+            $table->string('name_fr')->nullable();
+            $table->string('name_en')->nullable();
+
+            // Description multilingue
+            $table->text('description')->nullable();
+            $table->text('description_fr')->nullable();
+            $table->text('description_en')->nullable();
+
+            // Distance & durée
+            $table->string('distance')->nullable();
+            $table->string('duration')->nullable();
+
+            // Image
             $table->string('image')->nullable();
+
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('planets');

@@ -16,8 +16,12 @@ return [
         'space' => "L'espace",
         'destinations' => 'Choisissez votre destination',
         'crew' => "Rencontrez l'équipage",
-        'technology' => 'Technologies spatiales',
+        'technology' => 'Lancement spatial 101',
     ],
+
+    'technology' => [
+    'terminology' => 'LA TERMINOLOGIE',
+],
 
     'destinations' => [
     'distance' => 'Distance',
@@ -34,6 +38,7 @@ return [
     //  Boutons
     'buttons' => [
          'explore' => 'Explorer',
+     'back' => 'Retour',
     ],
 
     //  Autres

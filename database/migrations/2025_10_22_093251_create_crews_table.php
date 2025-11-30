@@ -6,27 +6,35 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('crews', function (Blueprint $table) {
-            $table->id();
-            $table->string('lastname');
-            $table->string('firstname');
-            $table->string('role');
-            $table->text('biography');
-            $table->string('image')->nullable();
-            $table->timestamps();
-        });
+    $table->id();
+
+    // Nom
+    $table->string('name')->nullable();
+    $table->string('name_fr')->nullable();
+    $table->string('name_en')->nullable();
+
+    // Rôle
+    $table->string('role')->nullable();
+    $table->string('role_fr')->nullable();
+    $table->string('role_en')->nullable();
+
+    // Bio
+    $table->text('bio')->nullable();
+    $table->text('bio_fr')->nullable();
+    $table->text('bio_en')->nullable();
+
+    // Image
+    $table->string('image')->nullable();
+
+    $table->timestamps();
+});
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('crew_members');
+        Schema::dropIfExists('crews');
     }
 };

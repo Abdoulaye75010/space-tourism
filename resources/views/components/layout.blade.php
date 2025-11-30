@@ -44,7 +44,7 @@
 
     {{-- Header --}}
     <header class="bg-black shadow relative z-50">
-    <div class="container mx-auto flex items-center justify-between p-4 max-w-6xl">
+    <div class="w-full flex items-center justify-between p-4 lg:max-w-6xl lg:mx-auto">
         {{-- Logo --}}
         <a href="{{ route(app()->getLocale() . '.home') }}">
             <img src="{{ asset('images/shared/logo.svg') }}" alt="Logo Space Tourism" class="w-10 h-10 md:w-12 md:h-12">
@@ -52,26 +52,39 @@
 
         {{-- Menu principal desktop --}}
         <nav class="hidden md:flex space-x-6 uppercase tracking-widest">
-            <a href="{{ route(app()->getLocale() . '.home') }}"
-               class="{{ request()->routeIs('home') ? 'border-b-2 border-white pb-1' : 'hover:border-b-2 hover:border-gray-400 pb-1' }}">
-               {{ __('messages.menu.home')}}
-            </a>
 
-            <a href="{{ route(app()->getLocale() . '.destinations.index') }}"
-               class="{{ request()->routeIs('destinations.*') ? 'border-b-2 border-white pb-1' : 'hover:border-b-2 hover:border-gray-400 pb-1' }}">
-               {{ __('messages.menu.destinations')}}
-            </a>
+    {{-- Accueil --}}
+    <a href="{{ route(app()->getLocale() . '.home') }}"
+       class="{{ request()->routeIs(app()->getLocale() . '.home') 
+                    ? 'border-b-2 border-white pb-1' 
+                    : 'hover:border-b-2 hover:border-gray-400 pb-1' }}">
+       {{ __('messages.menu.home')}}
+    </a>
 
-            <a href="{{ route(app()->getLocale() . '.crew.index') }}"
-               class="{{ request()->routeIs('crew.*') ? 'border-b-2 border-white pb-1' : 'hover:border-b-2 hover:border-gray-400 pb-1' }}">
-               {{ __('messages.menu.crew') }}
-            </a>
+    {{-- Destinations --}}
+    <a href="{{ route(app()->getLocale() . '.destinations.index') }}"
+       class="{{ request()->routeIs(app()->getLocale() . '.destinations.*') 
+                    ? 'border-b-2 border-white pb-1' 
+                    : 'hover:border-b-2 hover:border-gray-400 pb-1' }}">
+       {{ __('messages.menu.destinations')}}
+    </a>
 
-           <a href="{{ route(app()->getLocale() . '.technology.index') }}"
-               class="{{ request()->routeIs('technology.*') ? 'border-b-2 border-white pb-1' : 'hover:border-b-2 hover:border-gray-400 pb-1' }}">
-               {{ __('messages.menu.technology')}}
-            </a>
-        </nav>
+    {{-- Crew --}}
+    <a href="{{ route(app()->getLocale() . '.crew.index') }}"
+       class="{{ request()->routeIs(app()->getLocale() . '.crew.*') 
+                    ? 'border-b-2 border-white pb-1' 
+                    : 'hover:border-b-2 hover:border-gray-400 pb-1' }}">
+       {{ __('messages.menu.crew') }}
+    </a>
+
+    {{-- Technology --}}
+    <a href="{{ route(app()->getLocale() . '.technology.index') }}"
+       class="{{ request()->routeIs(app()->getLocale() . '.technology.*') 
+                    ? 'border-b-2 border-white pb-1' 
+                    : 'hover:border-b-2 hover:border-gray-400 pb-1' }}">
+       {{ __('messages.menu.technology')}}
+    </a>
+</nav>
 
         {{-- Sélecteur de langue avec drapeaux appellant /lang/fr ou /lang/en --}}
         <div class="flex items-center space-x-3 ml-4">
@@ -127,13 +140,14 @@ MENU MOBILE - VERSION MULTILINGUE
 </header>
 
     {{-- Contenu principal --}}
-    <main class="container mx-auto p-4 max-w-6xl flex-grow">
+    <main class="w-full px-4 flex-grow 
+            lg:max-w-[1110px] lg:mx-auto">
         {{ $slot }}
     </main>
 
     {{-- Footer --}}
     <footer class="bg-black shadow mt-6">
-        <div class="container mx-auto text-center p-4 text-gray-400 max-w-6xl">
+        <div class="w-full text-center p-4 text-gray-400 lg:max-w-6xl lg:mx-auto">
             &copy; {{ date('Y') }} {{ __('messages.footer') }}.
     </footer>
 

@@ -6,64 +6,81 @@
         'mobile'  => 'images/destination/background-destination-mobile.jpg',
     ]">
 
-    <!-- Destinations - Mobile -->
-    <section class="flex flex-col items-center text-center px-6 pt-8 pb-14 space-y-5 overflow-hidden">
+    <section class="px-6 md:px-16 pt-8 md:pt-16 pb-14 lg:pt-20 text-white">
 
-        <!-- Titre de la page (Barlow condensé sur 1 ligne) -->
-        <h2 class="font-barlow-condensed text-white text-[16px] leading-[19px] tracking-[2.7px] uppercase -mt-8 whitespace-nowrap w-[278px] h-[19]">
-        <span class="opacity-25 font-bold mr-2 ">01</span>
-        {{ __('messages.titles.destinations')}}
-        </h2>
+    <!-- TITRE DE PAGE -->
+    <h2 class="font-barlow-condensed text-[16px] md:text-[20px] tracking-[2.7px] uppercase 
+               text-center md:text-left mb-8">
+        <span class="opacity-25 font-bold mr-2">01</span>
+        {{ __('messages.titles.destinations') }}
+    </h2>
 
-        <!-- Image planète -->
-        <img
-          src="{{ asset('images/destination/' . $planet['image']) }}"
-          alt="{{ $planet['name'] }}"
-          class="w-[170px] h-[170px] object-contain mt-1"
-        />
+    <!-- FLEX DESKTOP : IMAGE + TEXTE -->
+    <div class="flex flex-col items-center 
+                lg:flex-row lg:items-center lg:justify-between lg:gap-32">
 
-        <!-- Onglets planètes (Barlow condensé) -->
-        {{-- 
-        Liens des planètes, version multilingue
-        Ancien code : route('destinations.show', ['id' => $p['id']])
-        Nouveau code : route(app()->getLocale() . '.destinations.show', ['id' => $p['id']])
-        Ce code génère la bonne route selon la langue active (fr/en)
-        --}}
-        <nav class="mt-2 mb-1 flex items-center justify-center gap-6 font-barlow-condensed uppercase text-[14px] leading-[17px] tracking-[2.36px] text-[#D0D6F9]">
-        @foreach ($planets as $key => $p)
-        @php $active = $planet['name'] === $p['name']; @endphp
-        <a href="{{ route(app()->getLocale() . '.destinations.show', ['id' => $p['id']]) }}"
-           class="pb-4
-            {{ $active ? 'text-white border-b-2 border-white' : 'hover:text-white/80 border-b-2 border-transparent hover:border-white/40' }}">
-            {{ $p['name'] }}
-        </a>
-        @endforeach
-    
-    </nav>
+        <!-- IMAGE PLANÈTE -->
+        <img src="{{ asset('images/destination/' . $planet->image) }}"
+             alt="{{ $planet->name }}"
+             class="w-[170px] h-[170px] md:w-[300px] md:h-[300px] 
+                    lg:w-[445px] lg:h-[445px] object-contain mb-8 lg:mb-0 lg:mt-10" />
 
-        <!-- Nom planète (Bellefair serif) -->
-        <h1 class="font-bellefair text-white uppercase text-[56px] leading-[64px] max-w-[327px] mx-auto mt-4">
-            {{ $planet['name'] }}
-        </h1>
+        <!-- TEXTE + TABS -->
+        <div class="flex flex-col items-center text-center 
+                    lg:items-start lg:text-left max-w-[573px] lg:mt-10">
 
-        <!-- Description (Barlow) -->
-        <p class="font-barlow text-[#D0D6F9] text-[15px] leading-[25px] max-w-[327px] mx-auto -mt-4">
-            {{ $planet['description'] }}
-        </p>
+            <!-- TABS NAVIGATION -->
+            <nav class="flex gap-6 font-barlow-condensed uppercase 
+                        text-[14px] tracking-[2.36px] text-[#D0D6F9] mb-5">
+                @foreach($planets as $p)
+                    <a href="{{ route(app()->getLocale() . '.destinations.show', ['id' => $p->id]) }}"
+                       class="{{ $p->id === $planet->id ? 'text-white border-b-2 border-white pb-2' : '' }}">
+                       {{ $p->name }}
+                    </a>
+                @endforeach
+            </nav>
 
-        <!-- Trait séparateur -->
-        <hr class="w-full max-w-[327px] border-[#383B4B] -mt-0 my-6">
+            <!-- TITRE PLANÈTE -->
+            <h1 class="font-bellefair text-[56px] leading-[64px] 
+                       md:text-[80px] md:leading-[92px] 
+                       lg:text-[100px] lg:leading-[110px] uppercase mb-4">
+                {{ $planet->name }}
+            </h1>
 
-        <!-- Distance / Durée -->
-        <div class="flex flex-col items-center gap-6">
-            <div>
-                <p class="font-barlow-condensed uppercase text-[14px] leading-[17px] tracking-[2.36px] text-[#D0D6F9] mb-2">{{ __('messages.destinations.distance') }}</p>
-                <p class="font-bellefair text-white text-[28px] uppercase">{{ $planet['distance'] }}</p>
+            <!-- DESCRIPTION -->
+            <p class="font-barlow text-[#D0D6F9] text-[15px] leading-[25px]
+                      md:text-[16px] md:leading-[28px] mb-8 max-w-[450px]">
+                {{ $planet->description }}
+            </p>
+
+            <!-- SEPARATEUR -->
+            <hr class="w-full border-[#383B4B] mb-6">
+
+            <!-- DISTANCE + DUREE -->
+            <div class="flex flex-col md:flex-row md:gap-20 gap-8">
+
+                <div>
+                    <p class="font-barlow-condensed uppercase text-[14px] tracking-[2px] text-[#D0D6F9] mb-2">
+                        {{ __('messages.destinations.distance') }}
+                    </p>
+                    <p class="font-bellefair text-[28px] uppercase">
+                        {{ $planet->distance }}
+                    </p>
+                </div>
+
+                <div>
+                    <p class="font-barlow-condensed uppercase text-[14px] tracking-[2px] text-[#D0D6F9] mb-2">
+                        {{ __('messages.destinations.duration') }}
+                    </p>
+                    <p class="font-bellefair text-[28px] uppercase">
+                        {{ $planet->duration }}
+                    </p>
+                </div>
+
             </div>
-            <div>
-                <p class="font-barlow-condensed uppercase text-[14px] leading-[17px] tracking-[2.36px] text-[#D0D6F9] mb-2">{{ __('messages.destinations.duration') }}</p>
-                <p class="font-bellefair text-white text-[28px] uppercase">{{ $planet['duration'] }}</p>
-            </div>
-        </div>
-    </section>
+
+        </div> <!-- FIN TEXTE -->
+    </div> <!-- FIN FLEX -->
+</section>
+
 </x-layout>

@@ -16,13 +16,17 @@ return [
         'space' => 'The space',
         'destinations' => 'Choose your destination',
         'crew' => 'Meet the crew',
-        'technology' => 'Space Technologies',
+        'technology' => 'Space Launch 101',
+    ],
+
+    'technology' => [
+    'terminology' => 'THE TERMINOLOGY',
     ],
 
     'destinations' => [
     'distance' => 'Distance',
     'duration' => 'Duration',
-],
+    ],
 
     //  Descriptive texts
     'texts' => [
@@ -34,6 +38,7 @@ return [
     //  Buttons
     'buttons' => [
         'explore' => 'Explore',
+    'back' => 'Back',
     ],
 
     //  Other
