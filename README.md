@@ -1,61 +1,177 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+🌌 Space Tourism – Projet Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Un projet complet développé dans le cadre de la formation Développeur Web & Web Mobile, inspiré du challenge Space Tourism (Frontend Mentor), et entièrement reconstruit en Laravel, avec un front dynamique, un système admin CRUD, et une gestion d’images responsive (portrait / landscape).
 
-## About Laravel
+📌 Table des matières
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Présentation générale
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Fonctionnalités
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Architecture du projet
 
-## Learning Laravel
+Technologies utilisées
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Installation
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Structure de la base de données
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Captures (optionnel)
 
-## Laravel Sponsors
+Auteur
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+🌌 1. Présentation générale
 
-### Premium Partners
+Space Tourism est un site permettant d’explorer :
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+différentes destinations spatiales,
 
-## Contributing
+les membres du crew,
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+les différentes technologies utilisées dans les missions spatiales.
 
-## Code of Conduct
+Le front du site est entièrement responsive et fidèle au design original Frontend Mentor, mais alimenté par un système dynamique créé en Laravel.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Le projet inclut aussi un back-office complet pour gérer les contenus du site :
 
-## Security Vulnerabilities
+Destinations
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Crew
 
-## License
+Technologies
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Chaque ressource peut être ajoutée, modifiée, supprimée, avec gestion des images.
+
+🧩 2. Fonctionnalités
+🎨 Front Office
+
+Page Home (responsive)
+
+Page Destinations : navigation par onglets, images dynamiques, distance + durée
+
+Page Crew : navigation par “dots”, portraits du personnel
+
+Page Technology : boutons numérotés, images landscape (mobile) et portrait (desktop)
+
+🛠 Back Office (Administration)
+
+CRUD complet pour :
+
+✔ Destinations
+✔ Crew
+✔ Technologies
+
+🗂️ 3. Architecture du projet
+app/
+    Http/
+        Controllers/
+    Models/
+
+resources/
+    views/
+        admin/
+        components/
+        front/
+
+public/
+    images/
+        crew/
+        destination/
+        technology/
+
+routes/
+    web.php
+
+database/
+    migrations/
+
+🛠 4. Technologies utilisées
+
+Laravel 10+
+
+PHP 8+
+
+Blade / Blade Components
+
+Tailwind CSS
+
+MySQL
+
+Laravel Vite
+
+Git & GitHub
+
+⚙️ 5. Installation du projet
+1️⃣ Cloner le dépôt
+git clone https://github.com/Abdoulaye75010/space-tourism.git
+cd space-tourism
+
+2️⃣ Installer les dépendances
+composer install
+npm install
+npm run build
+
+3️⃣ Configurer l’environnement
+cp .env.example .env
+
+
+Modifier :
+
+DB_DATABASE=space_tourism
+DB_USERNAME=root
+DB_PASSWORD=
+
+4️⃣ Générer la clé
+php artisan key:generate
+
+5️⃣ Exécuter les migrations
+php artisan migrate
+
+6️⃣ Lancer le serveur
+php artisan serve
+
+🗄️ 6. Structure de la base de données
+📌 destinations
+
+id
+
+name
+
+description
+
+distance
+
+duration
+
+image
+
+📌 crews
+
+id
+
+name
+
+role
+
+biography
+
+image
+
+📌 technologies
+
+id
+
+name
+
+description
+
+image_landscape
+
+image_portrait
+
+👨‍🚀 8. Auteur
+
+Nom : Abdoulaye DIAGANA
+Formation : Développeur Web & Web Mobile
+Projet réalisé en novembre–décembre 2024
+GitHub : https://github.com/Abdoulaye75010
